@@ -1,0 +1,9 @@
+package com.evaluacion.java.parteuno.repository;
+
+import com.evaluacion.java.parteuno.model.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+}
