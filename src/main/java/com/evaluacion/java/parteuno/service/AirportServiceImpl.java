@@ -24,17 +24,16 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public Airport updateAirport(Airport airport) {
-        Optional<Airport> airportDb = this.airportRepository.findById(airport.getId());
+        Optional<Airport> airportDb = this.airportRepository.findById(airport.getAirport_id());
 
         if (airportDb.isPresent()){
             Airport airportUpdate = airportDb.get();
-            airportUpdate.setId(airport.getId());
+            airportUpdate.setAirport_id(airport.getAirport_id());
             airportUpdate.setName(airport.getName());
-            airportUpdate.setCode(airport.getCode());
             airportRepository.save(airportUpdate);
             return airportUpdate;
         }else {
-            throw new ResourceNotFoundException("Record not found with id : " + airport.getId());
+            throw new ResourceNotFoundException("Record not found with id : " + airport.getAirport_id());
         }
     }
 

@@ -1,13 +1,15 @@
 package com.evaluacion.java.parteuno.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "language")
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name="language_id")
+    private long language_id;
 
     @Column(name="code")
     private String code;
@@ -15,11 +17,15 @@ public class Language {
     @Column(name="name")
     private String name;
 
-    public long getId() {
-        return id;
+    /*@ManyToMany(mappedBy = "spokenLanguages", cascade = CascadeType.ALL)
+    List<Employee> speaks;*/
+
+    public long getLanguage_id() {
+        return language_id;
     }
-    public void setId(long id) {
-        this.id = id;
+
+    public void setLanguage_id(long language_id) {
+        this.language_id = language_id;
     }
 
     public String getCode() {
@@ -36,4 +42,11 @@ public class Language {
         this.name = name;
     }
 
+    /*public List<Employee> getSpeaks() {
+        return speaks;
+    }
+
+    public void setSpeaks(List<Employee> speaks) {
+        this.speaks = speaks;
+    }*/
 }

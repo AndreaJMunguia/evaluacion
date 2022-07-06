@@ -1,15 +1,15 @@
 package com.evaluacion.java.parteuno.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @Column(name="employee_id")
+    private long employee_id;
 
     @Column(name="surname")
     private String surname;
@@ -17,23 +17,24 @@ public class Employee {
     @Column(name="firstname")
     private String firstname;
 
-    /*@OneToMany
-    @JoinTable(name = "employee_language",
-            joinColumns = @JoinColumn(name= "id"),
-            inverseJoinColumns = @JoinColumn(name="id"))
-    private Set<Language> id_language = new HashSet<>();
 
-    @OneToMany
-    @JoinTable(name = "employee_country",
-            joinColumns = @JoinColumn(name= "id"),
-            inverseJoinColumns = @JoinColumn(name="id"))
-    private Set<Country> id_country = new HashSet<>();*/
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "country_id")
+    private Country country;
 
-    public long getId() {
-        return id;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "spoken_languages",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_id"))
+            List<Language> spokenLanguages;
+
+    public long getEmployee_id() {
+        return employee_id;
     }
-    public void setId(long id) {
-        this.id = id;
+
+    public void setEmployee_id(long employee_id) {
+        this.employee_id = employee_id;
     }
 
     public String getSurname() {
@@ -48,6 +49,20 @@ public class Employee {
     }
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public List<Language> getSpokenLanguages() {
+        return spokenLanguages;
+    }
+    public void setSpokenLanguages(List<Language> spokenLanguages) {
+        this.spokenLanguages = spokenLanguages;
     }
 
 }

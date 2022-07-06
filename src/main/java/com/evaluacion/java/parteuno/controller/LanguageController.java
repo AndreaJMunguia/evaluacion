@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/language")
+@RequestMapping("/apiv1/language")
 public class LanguageController {
     @Autowired
     private LanguageService languageService;
@@ -37,7 +37,7 @@ public class LanguageController {
 
     @PutMapping("actualizarlanguage/{id}")
     public ResponseEntity<Language> updateLanguage(@PathVariable long id, @RequestBody Language language) {
-        language.setId(id);
+        language.setLanguage_id(id);
         return ResponseEntity.ok().body(this.languageService.updateLanguage(language));
     }
 
