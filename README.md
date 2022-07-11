@@ -16,3 +16,5 @@ En nuestros modelos que corresponden a aquellas tablas que existirán en nuestra
 
 #### AUTOR
 Andrea Sarai Juárez Munguia
+
+**Nota:** Relaciones funcionando y recibiendo correctamente los datos. 
