@@ -7,8 +7,8 @@ import java.util.List;
 @Table(name = "language")
 public class Language {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="language_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="languageId")
     private long language_id;
 
     @Column(name="code")
@@ -17,8 +17,8 @@ public class Language {
     @Column(name="name")
     private String name;
 
-    /*@ManyToMany(mappedBy = "spokenLanguages", cascade = CascadeType.ALL)
-    List<Employee> speaks;*/
+    @ManyToMany(mappedBy = "languages", cascade = CascadeType.ALL)
+    private List<Employee> speaks;
 
     public long getLanguage_id() {
         return language_id;
@@ -42,11 +42,11 @@ public class Language {
         this.name = name;
     }
 
-    /*public List<Employee> getSpeaks() {
+    public List<Employee> getSpeaks() {
         return speaks;
     }
 
     public void setSpeaks(List<Employee> speaks) {
         this.speaks = speaks;
-    }*/
+    }
 }

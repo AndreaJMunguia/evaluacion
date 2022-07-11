@@ -7,8 +7,8 @@ import java.util.List;
 @Table(name = "employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="employee_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="employeeId")
     private long employee_id;
 
     @Column(name="surname")
@@ -17,17 +17,16 @@ public class Employee {
     @Column(name="firstname")
     private String firstname;
 
-
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "countryId")
     private Country country;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "spoken_languages",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "language_id"))
-            List<Language> spokenLanguages;
+            name = "languages",
+            joinColumns = @JoinColumn(name = "employeeId"),
+            inverseJoinColumns = @JoinColumn(name = "languageId"))
+            List<Language> languages;
 
     public long getEmployee_id() {
         return employee_id;
@@ -58,11 +57,11 @@ public class Employee {
         this.country = country;
     }
 
-    public List<Language> getSpokenLanguages() {
-        return spokenLanguages;
-    }
-    public void setSpokenLanguages(List<Language> spokenLanguages) {
-        this.spokenLanguages = spokenLanguages;
+    public List<Language> getLanguages() {
+        return languages;
     }
 
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
+    }
 }

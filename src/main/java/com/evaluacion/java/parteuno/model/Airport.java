@@ -6,15 +6,15 @@ import javax.persistence.*;
 @Table(name = "airport")
 public class Airport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="airport_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="airportId")
     private long airport_id;
 
     @Column(name="name")
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "country_id", nullable = false)
+    @JoinColumn(name = "countryId")
     private Country country;
 
     public long getAirport_id() {

@@ -7,8 +7,8 @@ import java.util.List;
 @Table(name = "country")
 public class Country {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="country_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="countryId")
     private long country_id;
 
     @Column(name="code")
@@ -17,12 +17,12 @@ public class Country {
     @Column(name="name")
     private String name;
 
-    /*@OneToOne(mappedBy = "country", cascade = CascadeType.ALL)
-    private Employee employee;*/
+    @OneToOne(mappedBy = "country", cascade = CascadeType.ALL)
+    private Employee employee;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "airport_id")
-    private List<Airport> airports;
+    @JoinColumn(name = "airportId")
+    List<Airport> airports;
 
     public long getCountry_id() {
         return country_id;
@@ -54,10 +54,10 @@ public class Country {
         this.airports = airports;
     }
 
-    /*public Employee getEmployee() {
+    public Employee getEmployee() {
         return employee;
     }
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }*/
+    }
 }
